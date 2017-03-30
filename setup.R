@@ -38,6 +38,7 @@ nhl.api.url <- paste0("https://api.twitter.com/1.1/lists/members.json?slug=",
                   nhl.twlist, "&owner_screen_name=", nhl.twowner, "&count=500")
 nhl.response <- GET(nhl.api.url, config(token=twitteR:::get_oauth_sig()))
 nhl.response.list <- fromJSON(content(nhl.response, as = "text", encoding = "UTF-8"))
+nhl.description <- sapply(nhl.response.list$users, function(i) i$description)
 nhl.names <- sapply(nhl.response.list$users, function(i) i$name)
 nhl.screennames <- sapply(nhl.response.list$users, function(i) i$screen_name)
 
@@ -46,8 +47,12 @@ nhl.screennames <- sapply(nhl.response.list$users, function(i) i$screen_name)
 ############################
 
 # get USWNT follower stats
+uswnt.data <- lookupUsers(uswnt.screennames)
+uswnt.followers <- sapply(uswnt.data, function(i) i$followersCount)
 
 # get NHL follower stats
+nhl.data <- lookupUsers(nhl.screennames)
+nhl.followers <- sapply(nhl.data, function(i) i$followersCount)
 
 ######################
 # VISUALIZE RESULTS #
