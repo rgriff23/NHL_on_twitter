@@ -7,20 +7,16 @@ source('~/Dropbox/Code/R/twitter_setup.R', chdir = TRUE)
 #################
 
 # get USWNT players
-uswnt.twlist <- "USWNT"
-uswnt.twowner <- "HeesooRandi"
 uswnt.api.url <- paste0("https://api.twitter.com/1.1/lists/members.json?slug=",
-                        uswnt.twlist, "&owner_screen_name=", uswnt.twowner, "&count=500")
+                        "USWNT", "&owner_screen_name=", "HeesooRandi", "&count=500")
 uswnt.response <- GET(uswnt.api.url, config(token=twitteR:::get_oauth_sig()))
 uswnt.response.list <- fromJSON(content(uswnt.response, as = "text", encoding = "UTF-8"))
 uswnt.names <- sapply(uswnt.response.list$users, function(i) i$name)
 uswnt.screennames <- sapply(uswnt.response.list$users, function(i) i$screen_name)
 
 # get NHL players
-nhl.twlist <- "nhl-players"
-nhl.twowner <- "NHL"
 nhl.api.url <- paste0("https://api.twitter.com/1.1/lists/members.json?slug=",
-                  nhl.twlist, "&owner_screen_name=", nhl.twowner, "&count=500")
+                  "nhl-players", "&owner_screen_name=", "NHL", "&count=500")
 nhl.response <- GET(nhl.api.url, config(token=twitteR:::get_oauth_sig()))
 nhl.response.list <- fromJSON(content(nhl.response, as = "text", encoding = "UTF-8"))
 nhl.description <- sapply(nhl.response.list$users, function(i) i$description)
@@ -42,6 +38,8 @@ nhl.followers <- sapply(nhl.data, function(i) i$followersCount)
 # identify as many NHL teams as possible using descriptions
 
 # manually fill in blanks for NHL teams
+
+# drop from nhl.followers if not on a team
 
 ######################
 # VISUALIZE RESULTS #
