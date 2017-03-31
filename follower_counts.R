@@ -1,21 +1,6 @@
 
-#################
-# PREPARATIONS #
-###############
-
-# load packages
-if (!require("twitteR")) {install.packages("twitteR")}
-library("twitteR")
-library("rjson")
-library("httr")
-
-# setting up Twitter authentication (application: HangukMiguk2017)
-consumer_key <- "WEEW6k4YAhu071DaNSU4H06gI"
-consumer_secret <- "4Pg0CW5wscKDvydmGinxSvAJkcV1RzaAffysMfM0KLS5FP7RgF"
-access_token <- "842737418142801920-4EAyDRuvJkm49EaN4Jeg19gUGubhegu"
-access_secret <- "IPT8dknS7AyxqDv70BjjAoOOLZX61MKgX6dtpHwp9cxs4"
-options(httr_oauth_cache=T)
-setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
+# twitter authentication
+source('~/Dropbox/Code/R/twitter_setup.R', chdir = TRUE)
 
 ###################
 # GET PLAYER IDS #
