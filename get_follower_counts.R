@@ -40,11 +40,11 @@ nhl.followers <- sapply(nhl.data, function(i) i$followersCount)
 #############
 
 # USWNT
-uswnt.data <- data.frame(Player=uswnt.names, Followers=uswnt.followers)
+uswnt.data <- data.frame(Player=uswnt.names, Handle=uswnt.screennames, Followers=uswnt.followers)
 write.csv(uswnt.data, file="~/Desktop/GitHub/NHL_on_twitter/data/uswnt_follower_counts.csv", row.names=F)
 
 # NHL
-nhl.data <- data.frame(Player=nhl.names, Followers=nhl.followers)
+nhl.data <- data.frame(Player=nhl.names, Handle=nhl.screennames, Followers=nhl.followers)
 write.csv(nhl.data, file="~/Desktop/GitHub/NHL_on_twitter/data/nhl_follower_counts.csv", row.names=F)
 
 ###################
