@@ -55,9 +55,6 @@ write.csv(nhl.followers.salaries.clean, file="~/Desktop/GitHub/NHL_on_twitter/da
 # VISUALIZE #
 ############
 
-# uswnt data
-uswnt.followers <- read.csv("~/Desktop/GitHub/NHL_on_twitter/data/uswnt_follower_counts.csv", header=T, stringsAsFactors=F)
-
 # scatterplot of followers vs salary
 plot(Salary/1000000~log(Followers), data=nhl.followers.salaries.clean, ylab="Salary (in millions of dollars)")
 abline(v=log(68000), col="red")
