@@ -17,6 +17,7 @@ nhl.salaries <- read.csv("~/Desktop/GitHub/NHL_on_twitter/data/nhl_salaries.csv"
 # export data on Twitter names that aren't in salary database
 #write.csv(missing.users, file="~/Desktop/GitHub/NHL_on_twitter/data/missing_users.csv", row.names=F)
 
+# import missing users file after editing (fixing names, identifying non-players)
 missing.users <- read.csv("~/Desktop/GitHub/NHL_on_twitter/data/missing_users.csv", header=T, stringsAsFactors=F)
 
 ################
@@ -57,25 +58,9 @@ write.csv(nhl.followers.salaries.clean, file="~/Desktop/GitHub/NHL_on_twitter/da
 # uswnt data
 uswnt.followers <- read.csv("~/Desktop/GitHub/NHL_on_twitter/data/uswnt_follower_counts.csv", header=T, stringsAsFactors=F)
 
-# linear model of salary vs log(followers)
-mod <- lm(Salary/1000000~log(Followers), data=nhl.followers.salaries.clean)
-
 # scatterplot of followers vs salary
 plot(Salary/1000000~log(Followers), data=nhl.followers.salaries.clean, ylab="Salary (in millions of dollars)")
-abline(mod)
 abline(v=log(68000), col="red")
-
-# use model to make salary preditions for USWNT
-predictions <- predict(mod, uswnt.followers)
-uswnt.followers$PredictedSalary <- predictions*1000000
-
-# average salary for NHL players with 50-70K followers
-fol60to70 <- nhl.followers.salaries.clean$Followers > 50000 & nhl.followers.salaries.clean$Followers < 70000
-mean(nhl.followers.salaries.clean[fol60to70,"Salary"]) # $2.8 million
-
-# average salary for NHL players with 10-35K followers
-fol15to35 <- nhl.followers.salaries.clean$Followers > 15000 & nhl.followers.salaries.clean$Followers < 35000
-mean(nhl.followers.salaries.clean[fol15to35,"Salary"]) # $2.7 million
 
 ########
 # END #
