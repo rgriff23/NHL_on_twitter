@@ -1,3 +1,14 @@
+#################
+# PREPARATIONS #
+###############
+
+# install/load packages
+if (!require("twitteR")) {install.packages("twitteR")}
+if (!require("rjson")) {install.packages("rjson")}
+if (!require("httr")) {install.packages("httr")}
+library("rjson")
+library("httr")
+library("twitteR")
 
 # twitter authentication
 source('~/Dropbox/Code/R/twitter_setup.R', chdir = TRUE)
@@ -39,11 +50,11 @@ nhl.followers <- sapply(nhl.data, function(i) i$followersCount)
 # WRITE DATA #
 #############
 
-# USWNT
+# USWNT (labeled 'clean' because no more steps are needed)
 uswnt.data <- data.frame(Player=uswnt.names, Handle=uswnt.screennames, Followers=uswnt.followers)
-write.csv(uswnt.data, file="~/Desktop/GitHub/NHL_on_twitter/data/uswnt_follower_counts.csv", row.names=F)
+write.csv(uswnt.data, file="~/Desktop/GitHub/NHL_on_twitter/data/uswnt_clean.csv", row.names=F)
 
-# NHL
+# NHL (cleaning is needed)
 nhl.data <- data.frame(Player=nhl.names, Handle=nhl.screennames, Followers=nhl.followers)
 write.csv(nhl.data, file="~/Desktop/GitHub/NHL_on_twitter/data/nhl_follower_counts.csv", row.names=F)
 

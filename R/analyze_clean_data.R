@@ -5,7 +5,7 @@
 # load packages
 library(RCurl)
 
-# read data 
+# read clean data from GitHub
 nhl.url <- "https://raw.githubusercontent.com/rgriff23/NHL_on_twitter/master/data/nhl_followers_salaries_clean.csv"
 uswnt.url <- "https://raw.githubusercontent.com/rgriff23/NHL_on_twitter/master/data/uswnt_follower_counts.csv"
 nhl.data <- read.csv(text=getURL(nhl.url), header=T)
@@ -19,12 +19,7 @@ uswnt.data$log.Followers <- log(uswnt.data$Followers)
 # HISTOGRAM #
 ############
 
-hist(nhl.data$log.Followers, 
-     breaks=50, 
-     col="gray", 
-     xlim=c(4,16),
-     xlab="Log (Number of Followers)",
-     main="")
+hist(nhl.data$log.Followers, breaks=50, col="gray", xlim=c(4,16), xlab="Log (Number of Followers)", main="")
 abline(v=uswnt.data$log.Followers, col="red")
 abline(v=mean(nhl.data$log.Followers), col="blue", lwd=3)
 
@@ -36,10 +31,11 @@ abline(v=mean(nhl.data$log.Followers), col="blue", lwd=3)
 fit <- nls(Salary/1000000 ~ SSlogis(log.Followers, Asym, xmid, scal), data = nhl.data)
 x = seq(4,16,0.1)
 y=predict(fit, list(log.Followers=x))
-plot(Salary/1e+06 ~ log.Followers, data = nhl.data, 
-     ylab="Salary (in millions of dollars)",
-     xlab="Log (Number of Followers)")
+
+# plot
+plot(Salary/1e+06 ~ log.Followers, data = nhl.data, ylab="Salary (in millions of dollars)", xlab="Log (Number of Followers)")
 lines(x,y)
+abline(v=uswnt.data[uswnt.data$Player=="Hilary Knight","log.Followers"], col="red", lwd=2)
 
 #######################
 # SALARY PREDICTIONS #

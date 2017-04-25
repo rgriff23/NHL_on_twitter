@@ -1,0 +1,53 @@
+source('~/Dropbox/Code/R/twitter_setup.R', chdir = TRUE)
+source('~/Dropbox/Code/R/twitter_setup.R', chdir = TRUE)
+mod2=lm(log(Salary/1e+06) ~ log.Followers, data = nhl.followers.salaries.clean)#
+x = seq(7,15,0.1)#
+y=exp(predict(mod2, list(log.Followers=x)))#
+plot(Salary/1e+06 ~ log.Followers, data = nhl.followers.salaries.clean)#
+lines(x,y)
+y=exp(predict(fit, list(log.Followers=x)))
+lines(x,y)
+y=predict(fit, list(log.Followers=x))
+1/(1+10^((3520-3560)/400))
+probA <- function (eloA,eloB) {1/(1+10^((eloB-eloA)/400))}
+eloA=2020
+eloB=2330
+probA(eloA,eloB)
+eloB=3005
+probA(eloA,eloB)
+eloB=3560
+probA(eloA,eloB)
+3560-110
+3495-1160
+3750000/68000
+55*15
+rep(0.438,3)
+(c(rep(0.438,3),rep(0.362,6))
+)
+mean(c(rep(0.438,3),rep(0.362,6)))
+mean(c(0.059,0.125))
+mean(c(0.063,0.111))
+mean(c(rep(0.304,10),rep(0.326,13)))
+mean(c(rep(1.95,6),rep(2.18,20),rep(1.87,2)))
+mean(c(rep(2.15,5),rep(2.25,13),rep(1.83,2)))
+mean(c(0.748,0.987))
+mean(c(0.67,0.903))
+mean(c(3.63,3.47))
+mean(c(3.52,3.51))
+mean(c(rep(5.83,2),rep(6.84,3)))
+mean(c(rep(2.62,13),rep(2.49,14)))
+mean(c(0.315,0.227))
+mean(c(0.25,0.199))
+mean(mean(c(rep(0.499,6),rep(0.468,7))), 0.582)
+mean(c(rep(0.475,15),rep(0.36,4)))
+mean(c(rep(0.472,13),rep(0.38,5)))
+mean(c(rep(0.779,40),rep(1.02,17)))
+mean(c(rep(0.662,40),rep(0.699,58)))
+mean(c(rep(7.93,33),rep(5.85,41),rep(9.31,6)))
+mean(c(7.93,5.85,9.31))
+mean(c(4.25,3.93,4.91))
+mean(11.2,7.7)
+mean(c(11.2,7.7))
+mean(c(6.5,4.9))
+mean(c(47.9,53.9,58.1,60.2,62.6,65,72.1,77.8))
+mean(c(42.2,45.8,49.7,53.6,56.3,52.5,62.1,73.2))

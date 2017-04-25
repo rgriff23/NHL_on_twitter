@@ -4,7 +4,7 @@
 
 # read data
 nhl.followers <- read.csv("~/Desktop/GitHub/NHL_on_twitter/data/nhl_follower_counts.csv", header=T, stringsAsFactors=F)
-nhl.salaries <- read.csv("~/Desktop/GitHub/NHL_on_twitter/data/nhl_salaries.csv", header=T, stringsAsFactors=F)
+nhl.salaries <- read.csv("~/Desktop/GitHub/NHL_on_twitter/data/salaries.csv", header=T, stringsAsFactors=F)
 
 ############################
 # CLEAN TWITTER NAME DATA #
@@ -49,15 +49,7 @@ names(nhl.followers.salaries.clean)[4] <- "Team"
 nhl.followers.salaries.clean <- nhl.followers.salaries.clean[!is.na(nhl.followers.salaries.clean$Salary),]
 
 # write data
-write.csv(nhl.followers.salaries.clean, file="~/Desktop/GitHub/NHL_on_twitter/data/nhl_followers_salaries_clean.csv", row.names=F)
-
-##############
-# VISUALIZE #
-############
-
-# scatterplot of followers vs salary
-plot(Salary/1000000~log(Followers), data=nhl.followers.salaries.clean, ylab="Salary (in millions of dollars)")
-abline(v=log(68000), col="red")
+write.csv(nhl.followers.salaries.clean, file="~/Desktop/GitHub/NHL_on_twitter/data/nhl_clean.csv", row.names=F)
 
 ########
 # END #
