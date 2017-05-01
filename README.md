@@ -1,6 +1,6 @@
 # NHL_on_twitter 
 
-Step-by-step guide to the data collection/analysis presented in [this blog post](). 
+Step-by-step guide to the data collection/analysis presented in [this blog post](https://rgriff23.github.io/2017/05/01/USWNT-NHL-Twitter-popularity.html). 
 
 Note that there is a gap between the GET DATA and ANALYZE DATA sections below, where I had to do some manual cleaning of the data, so my process isn't fully reproducible.
 
@@ -81,8 +81,8 @@ Import the cleaned dataframes:
 library(data.table)
 
 # read clean data from GitHub
-nhl.data <-  fread('https://raw.githubusercontent.com/rgriff23/NHL_on_twitter/master/data/nhl_followers_salaries_clean.csv')
-uswnt.data <-  fread('https://raw.githubusercontent.com/rgriff23/NHL_on_twitter/master/data/uswnt_follower_counts.csv')
+nhl.data <-  fread('https://raw.githubusercontent.com/rgriff23/NHL_on_twitter/master/data/nhl_clean.csv')
+uswnt.data <-  fread('https://raw.githubusercontent.com/rgriff23/NHL_on_twitter/master/data/uswnt_clean.csv')
 
 # log transformed follower counts
 nhl.data$log.Followers <- log(nhl.data$Followers)
