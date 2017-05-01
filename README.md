@@ -4,7 +4,7 @@ Step-by-step guide to the data collection/analysis presented in [this blog post]
 
 Note that there is a gap between the GET DATA and ANALYZE DATA sections below, where I had to do some manual cleaning of the data, so my process isn't fully reproducible.
 
-###TWITTER AUTHENTICATION
+### TWITTER AUTHENTICATION
 
 I am not going over this- if you have not done this yet, follow the steps [here](http://thinktostart.com/twitter-authentification-with-r/). 
 
@@ -17,7 +17,7 @@ options(httr_oauth_cache=T)
 setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
 ```
 
-###GET DATA
+### GET DATA
 
 One way to get data for a bunch of Twitter accounts is to pull the usernames from a [Twitter list](https://support.twitter.com/articles/76460#). The NHL already has a Twitter list for [NHL players](https://twitter.com/nhl/lists/nhl-players?lang=en), although the list contains some retired players and even non-players. For the US Women's National Team, I made [my own list](https://twitter.com/HeesooRandi/lists/uswnt). Using these lists, we can get a vector of Twitter handles and get data on all of the users. 
 
@@ -72,7 +72,7 @@ nhl_salaries$Salary <- as.numeric(gsub("," ,"", nhl_salaries))
 
 I had to go through the Twitter list of NHL players manually to clean up names (e.g., nicknames, foreign names) and remove anyone who wasn't a current NHL player in 2016-2017. The file `missing_users` in the `data` folder shows my notes, where I gave some users new names and other users were marked as non-players. After doing this, I merged the NHL Twitter and salary data into a single dataframe, `nhl_clean.csv`, using code in the file `combine_nhl_data.R`. The final cleaned dataframes for the NHL and USWNT players are in the `data` folder. 
 
-###ANALYZE DATA
+### ANALYZE DATA
 
 Import the cleaned dataframes:
 
@@ -119,4 +119,4 @@ predictions <- predict(fit, list(log.Followers=uswnt.data$log.Followers))
 uswnt.data$Estimated_NHL_salary <- paste("$", round(predictions*1000000,0), sep="")
 ```
  
-###END
+### END
